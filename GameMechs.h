@@ -21,23 +21,33 @@ class GameMechs
     private:
         char input;
         bool exitFlag;
-        
+        bool loseFlag;
+        int score;
         int boardSizeX;
         int boardSizeY;
 
     public:
+        //constructors
         GameMechs();
         GameMechs(int boardX, int boardY);
         
+        //getter methods
         bool getExitFlagStatus();
-        void setExitTrue();
-
+        bool getLoseFlagStatus();
         char getInput();
-        void setInput(char this_input);
-        void clearInput();
-
         int getBoardSizeX();
         int getBoardSizeY();
+        int getScore();
+
+        //setter methods
+        void setExitTrue();
+        void setLoseFlag();
+        void setInput(char this_input);
+        void clearInput();
+        void incrementScore();
+
+       
+        
       
 
 };

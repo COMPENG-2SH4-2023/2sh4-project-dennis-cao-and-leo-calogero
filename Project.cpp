@@ -7,7 +7,8 @@ using namespace std;
 
 #define DELAY_CONST 100000
 
-bool exitFlag;
+//bool exitFlag;
+GameMechs *mechanics;
 
 void Initialize(void);
 void GetInput(void);
@@ -40,18 +41,21 @@ void Initialize(void)
 {
     MacUILib_init();
     MacUILib_clearScreen();
+    mechanics = new GameMechs();
 
-    exitFlag = false;
+    //exitFlag = false; this is implied in game mechainics
 }
 
 void GetInput(void)
 {
+   char input_char = mechanics->getInput();
    
 }
 
 void RunLogic(void)
 {
-    
+    mechanics->setInput(input_char);
+    mechanics -> clearInput();
 }
 
 void DrawScreen(void)
@@ -69,6 +73,6 @@ void LoopDelay(void)
 void CleanUp(void)
 {
     MacUILib_clearScreen();    
-  
+    delete mechanics;
     MacUILib_uninit();
 }
