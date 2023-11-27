@@ -84,7 +84,16 @@ void GameMechs::incrementScore();
     score +=1;
 }
 
+void GameMechs::generateFood(objPos blockOff)
+{
+    int candidate_x = 0;
+    int candidate_y = 0;
+    srand(time(NULL));
 
+    candidate_x = rand() %()
+
+    
+}
 
 
 

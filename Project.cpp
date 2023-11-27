@@ -61,6 +61,7 @@ void RunLogic(void)
 void DrawScreen(void)
 {
     MacUILib_clearScreen();    
+    
 
 }
 
