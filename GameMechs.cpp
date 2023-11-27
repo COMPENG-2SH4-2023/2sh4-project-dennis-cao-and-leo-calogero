@@ -9,6 +9,7 @@ GameMechs::GameMechs()
     loseFlag = false;
     exitFlag = false;
 
+
 }
 
 GameMechs::GameMechs(int boardX, int boardY)
@@ -88,13 +89,27 @@ void GameMechs::generateFood(objPos blockOff)
 {
     int candidate_x = 0;
     int candidate_y = 0;
+    bool candidate_found = false;
     srand(time(NULL));
 
-    candidate_x = rand() %()
+    while(candidate_found != true);
+    {
+        candidate_x = (rand() % (boardSizeX - 2)) + 1;
+        candidate_y = (rand() % (boardSizeY - 2)) + 1;
 
+        foodPos.setObjPos(candidate_x, candidate_y, 'O');
+        if (foodPos.isPosEqual(&blockOff))
+        {
+            return;
+        }
+    }
     
 }
 
+void GameMechs::getFoodPos(objPos &returnPos)
+{
+    returnPos.getObjPos(foodPos);
+}
 
 
 

@@ -26,7 +26,7 @@ void Player::getPlayerPos(objPos &returnPos)
 void Player::updatePlayerDir()
 {
     //verify on monday
-    char input= mainGameMechsRef->GetInput();
+    char input= mainGameMechsRef->getInput();
 
     switch(input)
     {
