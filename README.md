@@ -7,6 +7,6 @@ You must watch the briefing video and read through the manual to engage in the d
 
 Section: [L02]
 
-MacID: [calogerl]
+MacID: [calogerl, caod9]
 
-StudentID: [400452849]
+StudentID: [400452849, 400434827]
