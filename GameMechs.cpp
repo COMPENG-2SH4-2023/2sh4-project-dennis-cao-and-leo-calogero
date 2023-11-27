@@ -9,7 +9,6 @@ GameMechs::GameMechs()
     loseFlag = false;
     exitFlag = false;
 
-
 }
 
 GameMechs::GameMechs(int boardX, int boardY)
