@@ -60,8 +60,26 @@ void RunLogic(void)
 
 void DrawScreen(void)
 {
-    MacUILib_clearScreen();    
-    
+     MacUILib_clearScreen();
+    int x_bound=mechanics->getBoardSizeX();
+    int y_bound=mechanics->getBoardSizeY();
+     int X,Y; // 
+   
+    for(Y=0; Y< y_bound ; Y++)
+    {
+        for(X=0; X <x_bound ; X++)
+        {
+            if ( X==0 || X== x_bound-1 || Y==0 || Y== y_bound-1 )
+            {
+                MacUILib_printf("#");
+            } 
+            else
+            {
+                MacUILib_printf(" ");
+            }
+        }
+        MacUILib_printf("\n");
+    }  
 
 }
 
