@@ -1,7 +1,7 @@
 #include <iostream>
 #include "MacUILib.h"
 #include "objPos.h"
-
+#include "GameMechs.h"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ int main(void)
 
     Initialize();
 
-    while(exitFlag == false)  
+    while(mechanics->getExitFlagStatus() == false)  
     {
         GetInput();
         RunLogic();
@@ -49,12 +49,13 @@ void Initialize(void)
 void GetInput(void)
 {
    char input_char = mechanics->getInput();
+   mechanics->setInput(input_char);
    
 }
 
 void RunLogic(void)
 {
-    mechanics->setInput(input_char);
+    
     mechanics -> clearInput();
 }
 
