@@ -8,7 +8,6 @@ GameMechs::GameMechs()
     score = 0;
     loseFlag = false;
     exitFlag = false;
-    objPos foodPos;
 
 
 }
