@@ -55,8 +55,13 @@ void GetInput(void)
 
 void RunLogic(void)
 {
-    
+   
+    if (mechanics->getInput() == ' ')
+    {
+        mechanics -> setExitTrue();
+    }
     mechanics -> clearInput();
+    
 }
 
 void DrawScreen(void)
