@@ -1,6 +1,6 @@
 #include "objPosArrayList.h"
 
-void objPosArrayList::objPosArrayList()
+objPosArrayList::objPosArrayList()
 {
     
 }
