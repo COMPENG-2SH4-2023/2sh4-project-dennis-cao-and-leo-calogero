@@ -61,17 +61,14 @@ void RunLogic(void)
     
     objPos playerPos;
    
-    if (mechanics->getInput() == ' ')
-    {
-        mechanics -> setExitTrue();
-    }
+    
     player1->updatePlayerDir();
     player1->movePlayer();
 
     
     player1->getPlayerPos(playerPos);
-
     mechanics ->generateFood(playerPos);
+
     mechanics -> clearInput();
     
 }

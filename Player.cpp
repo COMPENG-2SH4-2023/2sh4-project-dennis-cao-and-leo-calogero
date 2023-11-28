@@ -82,6 +82,24 @@ void Player::movePlayer()
         default:
             break;    
     }
+
+    if(playerPos.y==0)
+    {
+        playerPos.y=mainGameMechsRef->getBoardSizeY()-2; // wrap to bottom if at top
+    }
+    else if(playerPos.y==mainGameMechsRef->getBoardSizeY()-1) //at bottom, wrap to top
+    {
+        playerPos.y=1;
+    }
+    
+    if (playerPos.x==0)
+    {
+        playerPos.x=mainGameMechsRef->getBoardSizeX()-2;
+    }
+    else if (playerPos.x==mainGameMechsRef->getBoardSizeX()-1)
+    {
+        playerPos.x= 1;
+    }
   
 }
 
