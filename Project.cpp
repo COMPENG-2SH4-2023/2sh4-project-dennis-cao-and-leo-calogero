@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define DELAY_CONST 1000
+#define DELAY_CONST 100000
 
 //bool exitFlag;
 GameMechs *mechanics;
@@ -77,7 +77,7 @@ void RunLogic(void)
 
 void DrawScreen(void)
 {
-     MacUILib_clearScreen();
+    MacUILib_clearScreen();
     int x_bound=mechanics->getBoardSizeX();
     int y_bound=mechanics->getBoardSizeY();
     objPos playerPos;
@@ -90,7 +90,7 @@ void DrawScreen(void)
     {
         for(X=0; X <x_bound ; X++)
         {
-            if ( X==0 || X== x_bound-1 || Y==0 || Y== y_bound-1 )
+            if ( (X==0) || X== (x_bound-1) || (Y==0) || (Y== y_bound-1) )
             {
                 MacUILib_printf("#");
             } 
