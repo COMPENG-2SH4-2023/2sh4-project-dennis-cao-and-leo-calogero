@@ -9,6 +9,7 @@ using namespace std;
 
 //bool exitFlag;
 GameMechs *mechanics;
+Player *player1;
 
 void Initialize(void);
 void GetInput(void);
