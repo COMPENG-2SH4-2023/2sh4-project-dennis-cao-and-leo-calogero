@@ -39,9 +39,9 @@ char GameMechs::getInput()
 {
     if (MacUILib_hasChar())
     {
-        return MacUILib_getChar();
+        input = MacUILib_getChar();
     }
-    return 0;
+    return input;
 }
 
 int GameMechs::getBoardSizeX()
