@@ -58,7 +58,7 @@ void GetInput(void)
 
 void RunLogic(void)
 {
-
+    objPos playerPos;
    
     if (mechanics->getInput() == ' ')
     {
@@ -67,7 +67,7 @@ void RunLogic(void)
     player1->updatePlayerDir();
     player1->movePlayer();
 
-    objPos playerPos;
+    
     player1->getPlayerPos(playerPos);
 
     mechanics ->generateFood(playerPos);
