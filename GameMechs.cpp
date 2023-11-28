@@ -92,17 +92,15 @@ void GameMechs::generateFood(objPos blockOff)
     bool candidate_found = false;
     srand(time(NULL));
 
-    while(candidate_found != true);
+    while(foodPos.isPosEqual(&blockOff));
     {
         candidate_x = (rand() % (boardSizeX - 2)) + 1;
         candidate_y = (rand() % (boardSizeY - 2)) + 1;
 
         foodPos.setObjPos(candidate_x, candidate_y, 'O');
-        if (!(foodPos.isPosEqual(&blockOff)))
-        {
-            return;
-        }
+       
     }
+    return;
     
 }
 

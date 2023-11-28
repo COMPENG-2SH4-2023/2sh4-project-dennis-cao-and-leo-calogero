@@ -45,7 +45,9 @@ void Initialize(void)
     MacUILib_clearScreen();
     mechanics = new GameMechs();
     player1= new Player(mechanics);
+    
     //exitFlag = false; this is implied in game mechainics
+    // just testing to initialize;
 }
 
 void GetInput(void)
@@ -56,6 +58,7 @@ void GetInput(void)
 
 void RunLogic(void)
 {
+
    
     if (mechanics->getInput() == ' ')
     {
@@ -63,6 +66,11 @@ void RunLogic(void)
     }
     player1->updatePlayerDir();
     player1->movePlayer();
+
+    objPos playerPos;
+    player1->getPlayerPos(playerPos);
+
+    mechanics ->generateFood(playerPos);
     mechanics -> clearInput();
     
 }
@@ -73,7 +81,9 @@ void DrawScreen(void)
     int x_bound=mechanics->getBoardSizeX();
     int y_bound=mechanics->getBoardSizeY();
     objPos playerPos;
+    objPos foodPos;
     player1->getPlayerPos(playerPos);
+    mechanics -> getFoodPos(foodPos);
      int X,Y; // 
    
     for(Y=0; Y< y_bound ; Y++)
@@ -87,6 +97,10 @@ void DrawScreen(void)
             else if(X== playerPos.x && Y == playerPos.y)
             {
                 MacUILib_printf("%c", playerPos.symbol);
+            }
+            else if(X == foodPos.x && Y == foodPos.y)
+            {
+                MacUILib_printf("%c", foodPos.symbol);
             }
             else
             {
