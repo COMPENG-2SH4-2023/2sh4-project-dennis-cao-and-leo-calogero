@@ -2,6 +2,7 @@
 #include "MacUILib.h"
 #include "objPos.h"
 #include "GameMechs.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -43,7 +44,7 @@ void Initialize(void)
     MacUILib_init();
     MacUILib_clearScreen();
     mechanics = new GameMechs();
-
+    player1= new Player(mechanics);
     //exitFlag = false; this is implied in game mechainics
 }
 
@@ -60,6 +61,7 @@ void RunLogic(void)
     {
         mechanics -> setExitTrue();
     }
+    player1->movePlayer();
     mechanics -> clearInput();
     
 }
@@ -69,6 +71,8 @@ void DrawScreen(void)
      MacUILib_clearScreen();
     int x_bound=mechanics->getBoardSizeX();
     int y_bound=mechanics->getBoardSizeY();
+    objPos playerPos;
+    player1->getPlayerPos(playerPos);
      int X,Y; // 
    
     for(Y=0; Y< y_bound ; Y++)
@@ -79,6 +83,10 @@ void DrawScreen(void)
             {
                 MacUILib_printf("#");
             } 
+            else if(X== playerPos.x && Y == playerPos.y)
+            {
+                MacUILib_printf("%c", playerPos.symbol);
+            }
             else
             {
                 MacUILib_printf(" ");
@@ -98,6 +106,7 @@ void LoopDelay(void)
 void CleanUp(void)
 {
     MacUILib_clearScreen();    
+    delete player1;
     delete mechanics;
     MacUILib_uninit();
 }
