@@ -46,7 +46,7 @@ void Player::updatePlayerDir()
                 break;
             
             case 's':
-                if (myDir!= LEFT && myDir!= RIGHT) //move left/right
+                if (myDir!= UP && myDir!= DOWN) //move left/right
                 {
                     myDir=DOWN;
                 }
@@ -74,7 +74,7 @@ void Player::movePlayer()
             playerPos.x-=1;
             break;
         case UP: 
-            playerPos.y-=1;
+            playerPos.y -=1;
             break;
         case DOWN: 
             playerPos.y+=1;

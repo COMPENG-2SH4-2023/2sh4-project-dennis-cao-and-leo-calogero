@@ -6,7 +6,7 @@
 
 using namespace std;
 
-#define DELAY_CONST 100000
+#define DELAY_CONST 1000
 
 //bool exitFlag;
 GameMechs *mechanics;
@@ -61,6 +61,7 @@ void RunLogic(void)
     {
         mechanics -> setExitTrue();
     }
+    player1->updatePlayerDir();
     player1->movePlayer();
     mechanics -> clearInput();
     
