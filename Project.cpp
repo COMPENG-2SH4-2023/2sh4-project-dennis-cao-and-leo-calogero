@@ -41,6 +41,7 @@ int main(void)
 
 void Initialize(void)
 {
+    MacUILib_clearScreen();
     MacUILib_init();
     MacUILib_clearScreen();
     mechanics = new GameMechs();
@@ -58,6 +59,7 @@ void GetInput(void)
 
 void RunLogic(void)
 {
+    MacUILib_clearScreen();
     objPos playerPos;
    
     if (mechanics->getInput() == ' ')
@@ -84,7 +86,7 @@ void DrawScreen(void)
     objPos foodPos;
     player1->getPlayerPos(playerPos);
     mechanics -> getFoodPos(foodPos);
-     int X,Y; // 
+     int X = 0,Y = 0; // 
    
     for(Y=0; Y< y_bound ; Y++)
     {
