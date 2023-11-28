@@ -49,8 +49,7 @@ void Initialize(void)
 
 void GetInput(void)
 {
-   char input_char = mechanics->getInput();
-   mechanics->setInput(input_char);
+   mechanics->getInput();
    
 }
 
