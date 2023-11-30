@@ -65,14 +65,18 @@ void RunLogic(void)
 {
     
     objPosArrayList *playerBody = player1->getPlayerPos();
+    //from the player1's objPosArrayList, we are creating a pointer to the playerBody.
     objPos playerPos;
     playerBody -> getHeadElement(playerPos);
-   
+   //we set the head element as "playerPos"
     
     player1->updatePlayerDir();
+    //updatee the movement
     player1->movePlayer();
+    //move
     if (player1->checkFoodConsumption() == true)
     {
+        //checking if consumed food, increment score and generate new food
         mechanics -> incrementScore();
         mechanics -> generateFood(playerBody);
     }
@@ -97,9 +101,11 @@ void DrawScreen(void)
     int y_bound=mechanics->getBoardSizeY();
     objPos foodPos;
     objPos tempBody;
+    //creating foodPos and tempBody objects // tempBody is for looping through the body element
     objPosArrayList *playerBody = player1->getPlayerPos();
     mechanics -> getFoodPos(foodPos);
     bool drawn;
+    //if we have already drawn the element, we can skip it in the board drawing implementation
      int X,Y; // 
    
     for(Y=0; Y< y_bound ; Y++)
@@ -136,10 +142,12 @@ void DrawScreen(void)
         MacUILib_printf("\n");
 
     } 
+    //printing extra stuff, i.e position, score
     MacUILib_printf("Player Position: <%d, %d>\n", tempBody.x, tempBody.y); 
-    MacUILib_printf("Your Score is: %d ", mechanics -> getScore());
+    MacUILib_printf("Your Score is: %d\n ", mechanics -> getScore());
     if (mechanics -> getLoseFlagStatus() == true)
     {
+        //if lose Flag is true, we will set Exit to true and leave a kind message
         MacUILib_printf("YOU ARE A LOSER\n");
         mechanics -> setExitTrue();
     }

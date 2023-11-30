@@ -6,10 +6,13 @@ Player::Player(GameMechs* thisGMRef)
     mainGameMechsRef = thisGMRef;
     myDir = STOP;
 
-    objPos tempPos;
+    objPos tempPos; //creating a temp object to store our head
     tempPos.setObjPos(mainGameMechsRef->getBoardSizeX()/2, mainGameMechsRef->getBoardSizeY()/2, '*'); //initial x ,y , symbol
+    //setting the object head as default
     playerPosList = new objPosArrayList();
+    //creating a new list on the heap with the name playerPosList
     playerPosList->insertHead(tempPos);
+    //insert the newly created head to start
 
 }
 
@@ -29,7 +32,6 @@ objPosArrayList* Player::getPlayerPos()
 
 void Player::updatePlayerDir()
 {
-    //verify on monday
     char input= mainGameMechsRef->getInput();
 
     
@@ -72,10 +74,11 @@ void Player::updatePlayerDir()
 void Player::movePlayer()
 {
     objPos currentHead; //holding the information of the current head
-    playerPosList->getHeadElement(currentHead);
+    playerPosList->getHeadElement(currentHead); 
     objPos tempPos;
 
-
+    //setting out currentHead object to the next iteration based on the processing in updatePlayerDir; 
+    // stored in new object, not body yet.
      switch(myDir)
     {
         case RIGHT: 
@@ -111,14 +114,19 @@ void Player::movePlayer()
     {
        currentHead.x= 1;
     }
-
+    //inserting the new head
     playerPosList -> insertHead(currentHead);
+
+    //if we consume a food, we will not remove the tail
+    // if we do not consume a food, we remove tail to show movement of the snake body
     if(checkFoodConsumption() == false)
     {
         
         playerPosList -> removeTail();
     }
   
+    //checking for loser condition
+    //looping through the body, such that if headpos = position of any other element, loseflag is set to true
     for (int i = 1; i < playerPosList -> getSize(); i++)
     {
         playerPosList -> getElement(tempPos, i);
@@ -131,6 +139,7 @@ void Player::movePlayer()
 
 bool Player::checkFoodConsumption()
 {
+    //checking if the food position is equal to the head position, true if it is, false if not
     objPos foodPos;
     objPos tempPos;
     playerPosList -> getHeadElement(tempPos);
