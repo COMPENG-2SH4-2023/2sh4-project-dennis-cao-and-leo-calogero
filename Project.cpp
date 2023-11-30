@@ -138,6 +138,11 @@ void DrawScreen(void)
     } 
     MacUILib_printf("Player Position: <%d, %d>\n", tempBody.x, tempBody.y); 
     MacUILib_printf("Your Score is: %d ", mechanics -> getScore());
+    if (mechanics -> getLoseFlagStatus() == true)
+    {
+        MacUILib_printf("YOU ARE A LOSER\n");
+        mechanics -> setExitTrue();
+    }
 
 }
 
@@ -148,8 +153,7 @@ void LoopDelay(void)
 
 
 void CleanUp(void)
-{
-    MacUILib_clearScreen();    
+{  
     delete player1;
     delete mechanics;
     MacUILib_uninit();

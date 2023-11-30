@@ -73,6 +73,7 @@ void Player::movePlayer()
 {
     objPos currentHead; //holding the information of the current head
     playerPosList->getHeadElement(currentHead);
+    objPos tempPos;
 
 
      switch(myDir)
@@ -118,6 +119,14 @@ void Player::movePlayer()
         playerPosList -> removeTail();
     }
   
+    for (int i = 1; i < playerPosList -> getSize(); i++)
+    {
+        playerPosList -> getElement(tempPos, i);
+        if (currentHead.isPosEqual(&tempPos))
+        {
+            mainGameMechsRef -> setLoseFlag();
+        }
+    }
 }
 
 bool Player::checkFoodConsumption()
@@ -136,6 +145,7 @@ bool Player::checkFoodConsumption()
         return false;
     }
 }
+
 
 /*void Player::increasePlayerLength()
 {
