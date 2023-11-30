@@ -45,6 +45,9 @@ void Initialize(void)
     MacUILib_init();
     mechanics = new GameMechs();
     player1= new Player(mechanics);
+    objPos playerPos;
+    player1->getPlayerPos(playerPos);
+    mechanics ->generateFood(playerPos);
     
     //exitFlag = false; this is implied in game mechainics
     // just testing to initialize;
@@ -67,9 +70,17 @@ void RunLogic(void)
 
     
     player1->getPlayerPos(playerPos);
-    mechanics ->generateFood(playerPos);
 
+    /*
+       // generate new food randomly debug
+         if (mechanics -> getInput() == 'p')
+    {
+        mechanics -> generateFood(playerPos);
+    }
+    */
+   
     mechanics -> clearInput();
+    
     
 }
 
