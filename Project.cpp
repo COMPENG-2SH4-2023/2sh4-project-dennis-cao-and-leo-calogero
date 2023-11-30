@@ -45,12 +45,14 @@ void Initialize(void)
     MacUILib_init();
     mechanics = new GameMechs();
     player1= new Player(mechanics);
-    objPos playerPos;
-    player1->getPlayerPos(playerPos);
-    mechanics ->generateFood(playerPos);
     
+    objPosArrayList *playerBody = player1->getPlayerPos();
+    objPos playerPos;
+    playerBody -> getHeadElement(playerPos);
+   
+    mechanics ->generateFood(playerBody);
     //exitFlag = false; this is implied in game mechainics
-    // just testing to initialize;
+    
 }
 
 void GetInput(void)
@@ -62,25 +64,29 @@ void GetInput(void)
 void RunLogic(void)
 {
     
+    objPosArrayList *playerBody = player1->getPlayerPos();
     objPos playerPos;
+    playerBody -> getHeadElement(playerPos);
    
     
     player1->updatePlayerDir();
     player1->movePlayer();
-
-    
-    player1->getPlayerPos(playerPos);
-
-    /*
-       // generate new food randomly debug
-         if (mechanics -> getInput() == 'p')
+    if (player1->checkFoodConsumption() == true)
     {
-        mechanics -> generateFood(playerPos);
+        mechanics -> incrementScore();
+        mechanics -> generateFood(playerBody);
+    }
+    //testing stuff
+    /*
+    if (mechanics -> getInput() == 'p')
+    {
+        mechanics ->generateFood(playerPos);
+    
     }
     */
-   
-    mechanics -> clearInput();
+
     
+    mechanics -> clearInput();
     
 }
 
@@ -89,24 +95,35 @@ void DrawScreen(void)
     MacUILib_clearScreen();
     int x_bound=mechanics->getBoardSizeX();
     int y_bound=mechanics->getBoardSizeY();
-    objPos playerPos;
     objPos foodPos;
-    player1->getPlayerPos(playerPos);
+    objPos tempBody;
+    objPosArrayList *playerBody = player1->getPlayerPos();
     mechanics -> getFoodPos(foodPos);
+    bool drawn;
      int X,Y; // 
    
     for(Y=0; Y< y_bound ; Y++)
     {
         for(X=0; X <x_bound ; X++)
         {
+            for (int k =0; k < playerBody ->getSize(); k++)
+            {
+                drawn = false;
+                playerBody -> getElement(tempBody, k);
+                if(tempBody.x == X && tempBody.y == Y)
+                {
+                    MacUILib_printf("%c", tempBody.symbol);
+                    drawn = true;
+                    break;
+                }
+            }
+
+            if(drawn) continue;
             if ( (X==0) || X== (x_bound-1) || (Y==0) || (Y== y_bound-1) )
             {
                 MacUILib_printf("#");
             } 
-            else if(X== playerPos.x && Y == playerPos.y)
-            {
-                MacUILib_printf("%c", playerPos.symbol);
-            }
+            
             else if(X == foodPos.x && Y == foodPos.y)
             {
                 MacUILib_printf("%c", foodPos.symbol);
@@ -117,7 +134,10 @@ void DrawScreen(void)
             }
         }
         MacUILib_printf("\n");
-    }  
+
+    } 
+    MacUILib_printf("Player Position: <%d, %d>\n", tempBody.x, tempBody.y); 
+    MacUILib_printf("Your Score is: %d ", mechanics -> getScore());
 
 }
 

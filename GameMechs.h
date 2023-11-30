@@ -49,7 +49,7 @@ class GameMechs
 
        //more methods
 
-       void generateFood(objPos blockOff);
+       void generateFood(objPosArrayList* blockOff);
        void getFoodPos(objPos &returnPos);
 
         

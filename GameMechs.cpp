@@ -90,23 +90,34 @@ void GameMechs::incrementScore()
     score +=1;
 }
 
-void GameMechs::generateFood(objPos blockOff)
+void GameMechs::generateFood(objPosArrayList* blockOff)
 {
     int candidate_x = 0;
     int candidate_y = 0;
-    bool candidate_found = false;
+    bool candidate_notfound = true;
+    objPos tempPos;
     srand(time(NULL));
 
-    while(foodPos.isPosEqual(&blockOff));
+    while(candidate_notfound == true)
     {
+        candidate_notfound = false;
         candidate_x = (rand() % (boardSizeX - 2)) + 1;
         candidate_y = (rand() % (boardSizeY - 2)) + 1;
 
-        foodPos.setObjPos(candidate_x, candidate_y, 'O');
        
+        foodPos.setObjPos(candidate_x, candidate_y, 'O');
+        for (int i =0; i < (blockOff -> getSize()); i++)
+        {
+            blockOff -> getElement(tempPos, i);
+            if (foodPos.isPosEqual(&tempPos))
+            {
+                candidate_notfound = true;
+                break;
+            }
+        }
+        
     }
-    return;
-    
+
 }
 
 void GameMechs::getFoodPos(objPos &returnPos)
