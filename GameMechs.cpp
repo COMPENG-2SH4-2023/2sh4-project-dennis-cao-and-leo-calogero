@@ -9,6 +9,11 @@ GameMechs::GameMechs()
     loseFlag = false;
     exitFlag = false;
 
+    foodBucket = new objPosArrayList();
+    
+    
+
+
 
 }
 
@@ -19,6 +24,8 @@ GameMechs::GameMechs(int boardX, int boardY)
     score = 0;
     loseFlag = false;
     exitFlag = false;
+    foodBucket = new objPosArrayList();
+
 }
 
 // do you need a destructor?
@@ -99,30 +106,37 @@ void GameMechs::generateFood(objPosArrayList* blockOff)
     //setting a condition if our candidate is not found
     bool candidate_notfound = true;
     objPos tempPos;
+    objPos foodPos;
     //tempPos to loop through the body
     srand(time(NULL));
 
-    while(candidate_notfound == true)
+    for(int j = 0; j < 5; j++)
     {
-        candidate_notfound = false;
-        candidate_x = (rand() % (boardSizeX - 2)) + 1;
-        candidate_y = (rand() % (boardSizeY - 2)) + 1;
-        //generating random x, y coordinate
-       
-        foodPos.setObjPos(candidate_x, candidate_y, 'O');
-        //creating our food
-        for (int i =0; i < (blockOff -> getSize()); i++)
+        while(candidate_notfound == true)
         {
-            blockOff -> getElement(tempPos, i);
-            if (foodPos.isPosEqual(&tempPos))
-            {
-                //if we find an element that matches the position of our food, we will break and set not found to true
-                // loop through and find a  new candidate
-                candidate_notfound = true;
-                break;
-            }
-        }
+            
+            candidate_notfound = false;
+            candidate_x = (rand() % (boardSizeX - 2)) + 1;
+            candidate_y = (rand() % (boardSizeY - 2)) + 1;
+            //generating random x, y coordinate
         
+            foodPos.setObjPos(candidate_x, candidate_y, 'O');
+            foodBucket.insertHead(foodPos)
+            //creating our food
+            for (int i =0; i < (blockOff -> getSize()); i++)
+            {
+                blockOff -> getElement(tempPos, i);
+                if (foodPos.isPosEqual(&tempPos))
+                {
+                    //if we find an element that matches the position of our food, we will break and set not found to true
+                    // loop through and find a  new candidate
+                    foodBucket.removeHead();
+                    candidate_notfound = true;
+                    break;
+                }
+            }
+            
+        }
     }
 
 }

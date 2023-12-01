@@ -19,13 +19,13 @@ class GameMechs
     // You will include more data members and member functions to complete your design.
 
     private:
-        objPos foodPos;
         char input;
         bool exitFlag;
         bool loseFlag;
         int score;
         int boardSizeX;
         int boardSizeY;
+        objPosArrayList* foodBucket;
 
     public:
         //constructors
