@@ -10,9 +10,6 @@ GameMechs::GameMechs()
     exitFlag = false;
 
     foodBucket = new objPosArrayList();
-    
-    
-
 
 
 }
@@ -24,12 +21,15 @@ GameMechs::GameMechs(int boardX, int boardY)
     score = 0;
     loseFlag = false;
     exitFlag = false;
+    
     foodBucket = new objPosArrayList();
-
 }
 
 // do you need a destructor?
-
+GameMechs::~GameMechs()
+{
+    delete foodBucket;
+}
 
 
 bool GameMechs::getExitFlagStatus()
@@ -106,37 +106,27 @@ void GameMechs::generateFood(objPosArrayList* blockOff)
     //setting a condition if our candidate is not found
     bool candidate_notfound = true;
     objPos tempPos;
-    objPos foodPos;
     //tempPos to loop through the body
     srand(time(NULL));
 
-    for(int j = 0; j < 5; j++)
+    while(candidate_notfound == true)
     {
-        while(candidate_notfound == true)
+        candidate_notfound = false;
+        candidate_x = (rand() % (boardSizeX - 2)) + 1;
+        candidate_y = (rand() % (boardSizeY - 2)) + 1;
+        //checking for candidate
+       
+        foodPos.setObjPos(candidate_x, candidate_y, 'O');
+        for (int i =0; i < (blockOff -> getSize()); i++)
         {
-            
-            candidate_notfound = false;
-            candidate_x = (rand() % (boardSizeX - 2)) + 1;
-            candidate_y = (rand() % (boardSizeY - 2)) + 1;
-            //generating random x, y coordinate
-        
-            foodPos.setObjPos(candidate_x, candidate_y, 'O');
-            foodBucket.insertHead(foodPos)
-            //creating our food
-            for (int i =0; i < (blockOff -> getSize()); i++)
+            blockOff -> getElement(tempPos, i);
+            if (foodPos.isPosEqual(&tempPos))
             {
-                blockOff -> getElement(tempPos, i);
-                if (foodPos.isPosEqual(&tempPos))
-                {
-                    //if we find an element that matches the position of our food, we will break and set not found to true
-                    // loop through and find a  new candidate
-                    foodBucket.removeHead();
-                    candidate_notfound = true;
-                    break;
-                }
+                candidate_notfound = true;
+                break;
             }
-            
         }
+        
     }
 
 }
@@ -144,7 +134,6 @@ void GameMechs::generateFood(objPosArrayList* blockOff)
 void GameMechs::getFoodPos(objPos &returnPos)
 {
     foodPos.getObjPos(returnPos);
-    //return the position of food into the object
 }
 
 

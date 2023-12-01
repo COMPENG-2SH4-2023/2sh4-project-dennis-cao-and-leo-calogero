@@ -26,12 +26,13 @@ class GameMechs
         int boardSizeX;
         int boardSizeY;
         objPosArrayList* foodBucket;
-
+        objPos foodPos;
+        
     public:
         //constructors
         GameMechs();
         GameMechs(int boardX, int boardY);
-        
+        ~GameMechs();
         //getter methods
         bool getExitFlagStatus();
         bool getLoseFlagStatus();
