@@ -7,7 +7,7 @@
 using namespace std;
 
 #define DELAY_CONST 100000
-
+// SPACEBAR IS TO TERMINATE
 //bool exitFlag;
 GameMechs *mechanics;
 Player *player1;
@@ -45,10 +45,13 @@ void Initialize(void)
     MacUILib_init();
     mechanics = new GameMechs();
     player1= new Player(mechanics);
+    //creating our objects
     
     objPosArrayList *playerBody = player1->getPlayerPos();
+    //getting playerposition
     objPos playerPos;
     playerBody -> getHeadElement(playerPos);
+    //getting ourhead element
    
     mechanics ->generateFood(playerBody);
     //exitFlag = false; this is implied in game mechainics
@@ -107,14 +110,15 @@ void DrawScreen(void)
     bool drawn;
     //if we have already drawn the element, we can skip it in the board drawing implementation
      int X,Y; // 
-   
+   //generating board
     for(Y=0; Y< y_bound ; Y++)
     {
         for(X=0; X <x_bound ; X++)
         {
             for (int k =0; k < playerBody ->getSize(); k++)
             {
-                drawn = false;
+                drawn = false; //if drawn, we won't draw at that location anymore
+                //checking for the body
                 playerBody -> getElement(tempBody, k);
                 if(tempBody.x == X && tempBody.y == Y)
                 {
@@ -132,7 +136,7 @@ void DrawScreen(void)
             
             else if(X == foodPos.x && Y == foodPos.y)
             {
-                MacUILib_printf("%c", foodPos.symbol);
+                MacUILib_printf("%c", foodPos.symbol); //checking for the food
             }
             else
             {

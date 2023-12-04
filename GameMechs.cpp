@@ -1,6 +1,7 @@
 #include "GameMechs.h"
 #include "MacUILib.h"
 
+//constructors, setting default
 GameMechs::GameMechs()
 {
     boardSizeX = 30;
@@ -9,7 +10,8 @@ GameMechs::GameMechs()
     loseFlag = false;
     exitFlag = false;
 
-    foodBucket = new objPosArrayList();
+    //foodBucket = new objPosArrayList();
+    
 
 
 }
@@ -21,82 +23,78 @@ GameMechs::GameMechs(int boardX, int boardY)
     score = 0;
     loseFlag = false;
     exitFlag = false;
-    
-    foodBucket = new objPosArrayList();
 }
 
 // do you need a destructor?
-GameMechs::~GameMechs()
-{
-    delete foodBucket;
-}
 
 
+//get exit flag
 bool GameMechs::getExitFlagStatus()
 {
     return exitFlag;
 }
-
+//get lose flag
 bool GameMechs ::  getLoseFlagStatus()
 {
     return loseFlag;
 }
-
+//get input
 char GameMechs::getInput()
 {
     if (MacUILib_hasChar())
     {
         input = MacUILib_getChar();
     }
-    
+    // getting input, if the input is a space, terminate
     if(input== ' ' )
     {
         exitFlag=true;
     }
     return input;
 }
-
+//getting X board size
 int GameMechs::getBoardSizeX()
 {
     return boardSizeX;
 }
-
+//getting Y board size
 int GameMechs::getBoardSizeY()
 {
     return boardSizeY;
 }
-
+//getting the score
 int GameMechs::getScore()
 {
     return score;
 }
-
+//setting our exit flag to be true to terminate
 
 void GameMechs::setExitTrue()
 {
     exitFlag = true;
 }
-
+//setting lose flag true to indicate loss
 void GameMechs::setLoseFlag()
 {
     loseFlag = true;
 }
-
+//function to set input if needed
 void GameMechs::setInput(char this_input)
 {
     input = this_input;
 }
-
+//clearing input after processing
 void GameMechs::clearInput()
 {
     input = 0;
 }
-
+//incrementing score by 1
 void GameMechs::incrementScore()
 {
     score +=1;
 }
 
+//generating our random food
 void GameMechs::generateFood(objPosArrayList* blockOff)
 {
     //creating candidate positino for our food

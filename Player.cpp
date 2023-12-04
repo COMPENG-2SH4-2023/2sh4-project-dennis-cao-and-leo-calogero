@@ -79,6 +79,9 @@ void Player::movePlayer()
 
     //setting out currentHead object to the next iteration based on the processing in updatePlayerDir; 
     // stored in new object, not body yet.
+
+    //checking for the direction that the current head will be going towards, and setting that in our current head object
+    //updates the direciton
      switch(myDir)
     {
         case RIGHT: 
@@ -114,7 +117,7 @@ void Player::movePlayer()
     {
        currentHead.x= 1;
     }
-    //inserting the new head
+    //inserting the new head into the body
     playerPosList -> insertHead(currentHead);
 
     //if we consume a food, we will not remove the tail
@@ -144,6 +147,7 @@ bool Player::checkFoodConsumption()
     objPos tempPos;
     playerPosList -> getHeadElement(tempPos);
     mainGameMechsRef -> getFoodPos(foodPos);
+    //if the food position and food position are equal is checked here
     if (tempPos.isPosEqual(&foodPos))
     {
         return true;
