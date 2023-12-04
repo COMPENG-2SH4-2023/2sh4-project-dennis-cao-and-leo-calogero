@@ -166,6 +166,7 @@ void LoopDelay(void)
 
 void CleanUp(void)
 {  
+    //freeing heap members
     delete player1;
     delete mechanics;
     MacUILib_uninit();

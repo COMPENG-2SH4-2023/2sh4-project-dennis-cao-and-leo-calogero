@@ -32,7 +32,7 @@ objPosArrayList* Player::getPlayerPos()
 
 void Player::updatePlayerDir()
 {
-    char input= mainGameMechsRef->getInput();
+    char input= mainGameMechsRef->getInput(); 
 
     
 
@@ -158,15 +158,3 @@ bool Player::checkFoodConsumption()
         return false;
     }
 }
-
-
-
-/*void Player::increasePlayerLength()
-{
-    objPos tempPos;
-    objPos tempFood;
-    mainGameMechsRef -> getFoodPos(tempFood);
-    playerPosList -> getHeadElement(tempPos);
-    playerPosList -> insertHead(tempFood);
-}
-*/
